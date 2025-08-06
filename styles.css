@@ -1,0 +1,122 @@
+:root {
+  --bg: #f5f5f5;
+  --text: #222;
+  --card: #fff;
+  --sidebar-bg: #2f3542;
+  --sidebar-text: #fff;
+}
+
+[data-theme="dark"] {
+  --bg: #1e1e2f;
+  --text: #f1f1f1;
+  --card: #2a2a40;
+  --sidebar-bg: #1e1e30;
+  --sidebar-text: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 60px 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  height: 100vh;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  margin-bottom: 2rem;
+}
+
+.sidebar nav a {
+  color: var(--sidebar-text);
+  text-decoration: none;
+  margin-bottom: 1rem;
+  display: block;
+  transition: opacity 0.3s;
+}
+
+.sidebar nav a:hover {
+  opacity: 0.7;
+}
+
+.header {
+  grid-area: header;
+  background: var(--card);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.header button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.main {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px auto 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main";
+  }
+
+  .sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .sidebar nav {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .sidebar nav a {
+    margin-bottom: 0;
+  }
+}
